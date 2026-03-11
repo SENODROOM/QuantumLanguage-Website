@@ -162,6 +162,19 @@
       text-shadow: 0 0 25px rgba(0, 229, 255, 0.5), 0 0 50px rgba(0,229,255,.2);
       flex-shrink: 0;
       transition: text-shadow .3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      width: auto;
+      transition: transform .3s;
+    }
+
+    .nav-logo:hover img {
+      transform: scale(1.05);
     }
 
     .nav-logo:hover {
@@ -1022,31 +1035,11 @@
       }
     }
 
-    .tab-bar-wrap {
-      position: relative;
-      border-bottom: 1px solid var(--border);
-      background: #08121a;
-    }
-
-    .tab-bar-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: 60px;
-      background: linear-gradient(90deg, transparent, #08121a);
-      pointer-events: none;
-      z-index: 2;
-    }
-
     .tab-bar {
       display: flex;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .tab-bar::-webkit-scrollbar {
-      display: none;
+      border-bottom: 1px solid var(--border);
+      background: #08121a;
+      overflow-x: auto
     }
 
     .tab-btn {
@@ -1984,467 +1977,36 @@
       opacity: 1
     }
 
-    /* ─── SCROLL PROGRESS BAR ────────────────────────────────────── */
-    #scroll-progress {
-      position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 99999;
-      background: linear-gradient(90deg, var(--accent), var(--purple), var(--green));
-      box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(0,229,255,.4);
-      transition: width .1s linear;
-      pointer-events: none;
-    }
+    @media(max-width:700px) {
+      section {
+        padding: 5rem 0
+      }
 
-    /* ─── TYPED TEXT ─────────────────────────────────────────────── */
-    .typed-wrap { display: inline; }
-    .typed-text { color: var(--yellow); }
-    .typed-cursor {
-      display: inline-block; width: 2px; height: 1em;
-      background: var(--yellow); vertical-align: text-bottom;
-      animation: blink 1s step-end infinite; margin-left: 1px;
-    }
+      .wrap {
+        padding: 0 1.2rem
+      }
 
-    /* ─── ANIMATED STAT NUMBERS ─────────────────────────────────── */
-    .stat-n { transition: color .3s; }
-    .stat-n.counting { color: var(--yellow) !important; }
+      .ascii-art {
+        display: none
+      }
 
-    /* ─── 3D CARD TILT ───────────────────────────────────────────── */
-    .feat-card {
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-    .card-grid {
-      perspective: 1200px;
-    }
+      .rot13-body {
+        grid-template-columns: 1fr
+      }
 
-    /* ─── SECTION SCAN EFFECT ────────────────────────────────────── */
-    .section-scan { display: none; }
+      .rot13-arrow {
+        padding: .5rem;
+        transform: rotate(90deg)
+      }
 
-    /* ─── GLITCH HEADINGS ────────────────────────────────────────── */
-    .glitch-text {
-      position: relative;
-    }
-    .glitch-text::before, .glitch-text::after {
-      content: attr(data-text);
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      font-family: inherit; font-size: inherit; font-weight: inherit;
-      letter-spacing: inherit; color: inherit;
-      opacity: 0;
-    }
-    .glitch-text:hover::before {
-      color: var(--red); opacity: .7;
-      animation: glitch1 .3s steps(2) infinite;
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-    }
-    .glitch-text:hover::after {
-      color: var(--accent); opacity: .7;
-      animation: glitch2 .3s steps(2) infinite;
-      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-    }
-    @keyframes glitch1 {
-      0% { transform: translate(-3px, 0) skewX(-2deg); }
-      50% { transform: translate(3px, 0) skewX(2deg); }
-      100% { transform: translate(-1px, 0); }
-    }
-    @keyframes glitch2 {
-      0% { transform: translate(3px, 0) skewX(2deg); }
-      50% { transform: translate(-3px, 0) skewX(-2deg); }
-      100% { transform: translate(1px, 0); }
-    }
-
-    /* ─── HERO TITLE GLOW PULSE ──────────────────────────────────── */
-    .hero-title .t-q {
-      animation: titleGlow 4s ease-in-out infinite;
-    }
-    @keyframes titleGlow {
-      0%, 100% { filter: drop-shadow(0 0 20px rgba(0,229,255,.4)); }
-      50% { filter: drop-shadow(0 0 50px rgba(0,229,255,.8)) drop-shadow(0 0 100px rgba(0,229,255,.3)); }
-    }
-
-    /* ─── LIVE UPTIME COUNTER ────────────────────────────────────── */
-    #uptime-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: rgba(0,255,157,.07); border: 1px solid rgba(0,255,157,.2);
-      padding: 6px 14px; margin-top: 1rem; font-size: .62rem;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--green);
-      position: relative; z-index: 2;
-      animation: fadeUp 1s ease 1.7s both;
-    }
-    #uptime-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-      box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
-    #uptime-val { font-family: var(--display); font-size: 1rem; letter-spacing: 3px; color: var(--green); }
-
-    /* ─── ENHANCED ROT13 WIDGET ──────────────────────────────────── */
-    .rot13-widget {
-      background: var(--card);
-      border: 1px solid rgba(255,61,90,.15);
-      margin: 2rem 0;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 40px rgba(255,61,90,.04);
-      transition: box-shadow .3s;
-    }
-    .rot13-widget:hover {
-      box-shadow: 0 25px 80px rgba(0,0,0,.5), 0 0 60px rgba(255,61,90,.08);
-    }
-
-    /* ─── ENHANCED STICKER ───────────────────────────────────────── */
-    .sticker {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      background: var(--red);
-      color: #fff;
-      font-family: 'Permanent Marker', cursive;
-      font-size: .68rem;
-      padding: 8px 14px;
-      transform: rotate(-4deg) translateY(0);
-      animation: stickerFloat 3s ease-in-out infinite;
-      z-index: 300;
-      pointer-events: auto;
-      cursor: none;
-      box-shadow: 0 4px 20px rgba(255, 61, 90, .5), 0 0 40px rgba(255,61,90,.2);
-      user-select: none;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .sticker:hover {
-      box-shadow: 0 8px 30px rgba(255,61,90,.7), 0 0 60px rgba(255,61,90,.3);
-    }
-
-    /* ─── SECTION HEADING UNDERLINE ANIM ─────────────────────────── */
-    h2 {
-      font-family: var(--display);
-      font-size: clamp(2.4rem, 5.5vw, 5rem);
-      line-height: 1;
-      margin-bottom: 1.5rem;
-      letter-spacing: 1px;
-      position: relative;
-    }
-
-    /* ─── NAV PROGRESS INDICATOR ─────────────────────────────────── */
-    .nav-link.active::before {
-      content: '▶';
-      font-size: .4rem;
-      margin-right: .3rem;
-      color: var(--accent);
-      animation: pulse 2s infinite;
-    }
-
-    /* ─── TERMINAL TYPING ANIMATION ──────────────────────────────── */
-    .t-line { opacity: 0; animation: lineReveal .15s ease forwards; }
-    @keyframes lineReveal { to { opacity: 1; } }
-    #tab-hello .t-line:nth-child(1) { animation-delay: .1s; }
-    #tab-hello .t-line:nth-child(2) { animation-delay: .25s; }
-    #tab-hello .t-line:nth-child(3) { animation-delay: .4s; }
-    #tab-hello .t-line:nth-child(4) { animation-delay: .6s; }
-    #tab-hello .t-line:nth-child(5) { animation-delay: .8s; }
-
-    /* ─── CARD GRID ENHANCED ─────────────────────────────────────── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 0;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-top: 3rem;
-      box-shadow: 0 30px 80px rgba(0,0,0,.5);
-    }
-
-    /* ─── FEATURED BADGE ON CARDS ────────────────────────────────── */
-    .feat-card .fc-badge {
-      position: absolute; top: 1rem; right: 1rem;
-      font-size: .5rem; letter-spacing: 2px; text-transform: uppercase;
-      padding: 2px 6px; border: 1px solid; opacity: .7;
-    }
-    .fc-badge-ship { color: var(--green); border-color: var(--green); }
-    .fc-badge-lol { color: var(--red); border-color: var(--red); }
-
-    /* ─── BOTTOM PROGRESS BAR ANIM ───────────────────────────────── */
-    .prog-fill {
-      width: 0;
-      transition: width 1.2s cubic-bezier(.4,0,.2,1);
-    }
-    .prog-fill.animated { width: var(--target-width); }
-
-    /* ─── AURA TERMINAL ROWS HOVER ───────────────────────────────── */
-    .aura-row {
-      transition: background .2s;
-      border-radius: 2px;
-      padding: .4rem .5rem;
-    }
-    .aura-row:hover { background: rgba(0,229,255,.04); }
-
-    /* ─── FOOTER ENHANCED ────────────────────────────────────────── */
-    footer {
-      background: #020508;
-      border-top: 1px solid rgba(0,229,255,.08);
-      padding: 4rem 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    footer::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 100%, rgba(0,229,255,.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    /* ─── ENHANCED HERO QUOTE BOX ────────────────────────────────── */
-    .hero-quote-box {
-      margin-top: 2rem;
-      max-width: 520px;
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.3s forwards;
-      border-left: 2px solid var(--accent);
-      background: linear-gradient(135deg, rgba(0, 229, 255, .05), rgba(192,132,252,.03));
-      padding: 1.1rem 1.5rem;
-      text-align: left;
-      box-shadow: 0 10px 30px rgba(0,0,0,.3), inset 0 0 30px rgba(0,229,255,.02);
-    }
-
-    /* ─── SMOOTH SECTION TRANSITIONS ────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ─── INTERACTIVE TERMINAL TABS ──────────────────────────────── */
-    .tab-btn {
-      font-family: var(--mono);
-      font-size: .68rem;
-      letter-spacing: 1px;
-      padding: .75rem 1.5rem;
-      background: transparent;
-      border: none;
-      color: var(--dim);
-      cursor: none;
-      white-space: nowrap;
-      border-bottom: 2px solid transparent;
-      transition: all .25s;
-      position: relative;
-    }
-    .tab-btn::after {
-      content: '';
-      position: absolute; bottom: -2px; left: 50%; right: 50%;
-      height: 2px; background: var(--accent);
-      transition: left .25s, right .25s;
-    }
-    .tab-btn:hover::after { left: 0; right: 0; }
-    .tab-btn:hover { color: var(--text); background: rgba(255, 255, 255, .03); }
-    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: rgba(0, 229, 255, .04); }
-    .tab-btn.active::after { display: none; }
-
-    /* ─── ENHANCED TIMELINE DOTS ─────────────────────────────────── */
-    .tl-dot {
-      position: absolute;
-      left: -2.45rem;
-      top: 4px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 15px var(--accent), 0 0 30px rgba(0,229,255,.3);
-      animation: dotPulse 3s ease-in-out infinite;
-    }
-
-    /* ─── STATS BAR ENHANCED ─────────────────────────────────────── */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid rgba(0,229,255,.1);
-      margin: 3rem 0;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(0,229,255,.05);
-    }
-
-    /* ─── ENHANCED GH-CARD ───────────────────────────────────────── */
-    .gh-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      transition: all .35s cubic-bezier(.4,0,.2,1);
-      position: relative;
-      overflow: hidden;
-    }
-    .gh-card::before {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      transform: scaleX(0);
-      transition: transform .4s;
-    }
-    .gh-card:hover::before { transform: scaleX(1); }
-
-    /* ═══════════════════════════════════════════════════════
-       RESPONSIVE — tablet: 820px, mobile: 600px, xs: 400px
-    ═══════════════════════════════════════════════════════ */
-
-    /* ── Tablet ─────────────────────────────────────────── */
-    @media (max-width: 820px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: block; }
-
-      .hero { padding: 4rem 1.5rem 3rem; }
-
-      .cta-group { flex-direction: column; align-items: center; gap: .75rem; }
-      .cta-group .btn { width: 100%; max-width: 320px; text-align: center; }
-
-      .wrap { padding: 0 1.5rem; }
-      section { padding: 4rem 0; }
-
-      h2 { font-size: clamp(2rem, 7vw, 3.5rem); }
-
-      .stats-bar { grid-template-columns: repeat(3, 1fr); }
-
-      .card-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-
-      .testi-grid { grid-template-columns: 1fr; }
-
-      .brain-grid { grid-template-columns: repeat(2, 1fr); }
-
-      .sec-grid { grid-template-columns: repeat(3, 1fr); }
-
-      .gh-grid { grid-template-columns: repeat(2, 1fr); }
-
-      .resume-top { flex-direction: column; gap: .4rem; }
-
-      .finale { padding: 5rem 1.5rem; }
-
-      #uptime-badge { font-size: .55rem; padding: 5px 10px; }
-    }
-
-    /* ── Mobile ─────────────────────────────────────────── */
-    @media (max-width: 600px) {
-      /* loader */
-      .loader-logo { font-size: 2rem; letter-spacing: 8px; }
-
-      /* nav */
-      nav { padding: 0 1rem; }
-      .nav-logo { font-size: 1.2rem; letter-spacing: 3px; }
-
-      /* ticker */
-      .ticker { font-size: .72rem; }
-
-      /* hero */
-      .hero { padding: 3.5rem 1rem 2.5rem; min-height: 100svh; }
-      .ascii-art { display: none; }
-      .hero-badge { font-size: .54rem; letter-spacing: 2px; padding: 4px 10px; }
-      .hero-title { font-size: clamp(3rem, 16vw, 5rem); }
-      .hero-sub { font-size: .78rem; margin-top: 1.2rem; }
-      .hero-quote-box { font-size: .75rem; padding: .9rem 1.1rem; }
-      .cta-group { margin-top: 1.8rem; }
-      .btn { font-size: .7rem; padding: 11px 20px; }
-      #uptime-badge { font-size: .52rem; gap: .3rem; }
-      #uptime-val { font-size: .85rem; }
-
-      /* layout */
-      .wrap { padding: 0 1rem; }
-      section { padding: 3.5rem 0; }
-      h2 { font-size: clamp(1.8rem, 9vw, 3rem); margin-bottom: 1rem; }
-      .stag { font-size: .54rem; }
-      .body-text { font-size: .78rem; }
-
-      /* stats bar */
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .stat-n { font-size: 2.5rem; }
-      .stat-l { font-size: .52rem; letter-spacing: 1.5px; }
-
-      /* terminal */
-      .terminal-wrap { margin: 1.5rem 0; }
-      .tab-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .tab-btn { font-size: .58rem; padding: .65rem 1rem; white-space: nowrap; }
-      .terminal-body { padding: 1rem 1.1rem; min-height: 200px; }
-      .t-line { font-size: .72rem; }
-      .t-title { display: none; }
-
-      /* rot13 */
-      .rot13-body { grid-template-columns: 1fr; }
-      .rot13-arrow { transform: rotate(90deg); padding: .4rem; }
-      .rot13-note { font-size: .6rem; padding: .5rem 1rem .8rem; }
-
-      /* feature cards */
-      .card-grid { grid-template-columns: 1fr; }
-      .feat-card { padding: 1.5rem; }
-      .feat-card h3 { font-size: 1.25rem; }
-      .feat-card p { font-size: .74rem; }
-      .feat-card .fc-badge { display: none; }
-
-      /* aura terminal */
-      .aura-row .an { display: none; }
-      .aura-content { padding: 1rem; }
-      .aura-row { gap: .5rem; }
-
-      /* security grid */
-      .sec-grid { grid-template-columns: repeat(2, 1fr); }
-      .sec-kw { font-size: 1.3rem; }
-
-      /* table */
-      .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      table { min-width: 460px; }
-      th, td { padding: .6rem .8rem; font-size: .7rem; }
-
-      /* timeline */
-      .timeline { padding-left: 1.5rem; }
-
-      /* testimonials */
-      .testi-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .testi { padding: 1.5rem; }
-
-      /* brain grid */
-      .brain-grid { grid-template-columns: 1fr; }
-
-      /* progress */
-      .prog-head { font-size: .6rem; }
-
-      /* resume card */
-      .resume-body { padding: 1rem; }
-      .r-row { flex-direction: column; gap: .15rem; }
-      .r-key { min-width: unset; font-size: .7rem; }
-      .r-val { font-size: .72rem; }
-
-      /* gh grid */
-      .gh-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-      .gh-num { font-size: 2rem; }
-
-      /* finale */
-      .finale { padding: 4rem 1rem; }
-      .finale-title { font-size: clamp(2.2rem, 10vw, 4rem); }
-      .finale p { font-size: .76rem; }
-
-      /* footer */
-      footer { padding: 3rem 1rem; }
-      .foot-logo { font-size: 1.6rem; letter-spacing: 3px; }
-      footer p { font-size: .64rem; line-height: 2; }
-
-      /* sticker */
-      .sticker { bottom: 1rem; right: 1rem; font-size: .6rem; padding: 6px 11px; }
-
-      /* divider */
-      hr.divider { margin: 0 1rem; }
-    }
-
-    /* ── Extra small ─────────────────────────────────────── */
-    @media (max-width: 400px) {
-      .hero-title { font-size: clamp(2.4rem, 18vw, 3.5rem); }
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .sec-grid { grid-template-columns: 1fr 1fr; }
-      .gh-grid { grid-template-columns: 1fr; }
-      .btn { font-size: .65rem; padding: 10px 16px; }
-      h2 { font-size: clamp(1.6rem, 10vw, 2.5rem); }
+      .aura-row .an {
+        display: none
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- SCROLL PROGRESS -->
-  <div id="scroll-progress"></div>
 
   <!-- LOADER -->
   <div id="loader">
@@ -2463,7 +2025,10 @@
   <div class="sticker" id="sticker">⚠️ rot13 IS RUNNING</div>
 
   <nav id="navbar">
-    <a href="#home" class="nav-logo">QUANTUM</a>
+    <a href="#home" class="nav-logo">
+      <img src="logo/logo.png" alt="Quantum Language">
+      <span>QUANTUM</span>
+    </a>
     <div class="nav-links">
       <a href="#home" class="nav-link active" data-section="home">Home</a>
       <a href="#about" class="nav-link" data-section="about">About</a>
@@ -2531,7 +2096,7 @@
  ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝</pre>
     <div class="hero-badge">🔐 Cybersecurity-Ready* &nbsp;·&nbsp; *rot13 counts</div>
     <h1 class="hero-title">
-      <span class="t-q glitch-text" data-text="QUANTUM">QUANTUM</span>
+      <span class="t-q">QUANTUM</span>
       <span class="t-l">LANGUAGE</span>
     </h1>
     <p class="hero-sub">
@@ -2540,11 +2105,6 @@
       in <strong>3 weeks</strong> instead of doing homework. Files end in <strong>.sa</strong>.<br>
       We asked what .sa stands for. Saad did not respond. Assume it's classified.
     </p>
-    <div id="uptime-badge">
-      <span class="dot"></span>
-      <span>Interpreter uptime:</span>
-      <span id="uptime-val">00:00:00</span>
-    </div>
     <div class="hero-quote-box">
       <p>"Write once, run anywhere, hack everything."</p>
       <cite>— Muhammad Saad Amin, definitely while wearing a hoodie in a dark room</cite>
@@ -2559,7 +2119,6 @@
 
   <div class="wrap" id="about">
     <section>
-      <div class="section-scan"></div>
       <div class="stag reveal">// what even is this</div>
       <h2 class="reveal reveal-d1">A Dynamically-Typed<br>Scripting Language<br>Nobody Asked For</h2>
       <p class="body-text reveal reveal-d2">
@@ -2617,7 +2176,6 @@
             <div class="t-dot grn"></div>
             <div class="t-title">quantum v1.0.0 — tree-walk interpreter — .sa files only</div>
           </div>
-          <div class="tab-bar-wrap">
           <div class="tab-bar">
             <button class="tab-btn active" onclick="showTab('hello',this)">hello.sa</button>
             <button class="tab-btn" onclick="showTab('multi',this)">multi-syntax.sa</button>
@@ -2625,7 +2183,6 @@
             <button class="tab-btn" onclick="showTab('oop',this)">oop.sa</button>
             <button class="tab-btn" onclick="showTab('ptrs',this)">pointers.sa</button>
             <button class="tab-btn" onclick="showTab('aura',this)">$ quantum --aura</button>
-          </div>
           </div>
           <div class="terminal-body">
             <div id="tab-hello">
@@ -2846,7 +2403,6 @@
       <h2 class="reveal reveal-d1">"Features"<br>Examined</h2>
       <div class="card-grid reveal reveal-d2">
         <div class="feat-card">
-          <span class="fc-badge fc-badge-ship">SHIPPED</span>
           <span class="fc-icon">🔀</span>
           <h3>Triple Syntax Support</h3>
           <p><code>Token.h</code> has <code>DEF</code>, <code>FUNCTION</code>, and <code>FN</code> — three separate ways
@@ -2856,7 +2412,6 @@
           <span class="fc-ref">Token.h — DEF · FUNCTION · FN · TYPE_INT · TYPE_FLOAT · TYPE_CHAR...</span>
         </div>
         <div class="feat-card">
-          <span class="fc-badge fc-badge-ship">ROT13 LIVE</span>
           <span class="fc-icon">🔐</span>
           <h3>Cybersecurity "Ready"</h3>
           <p>Shipped crypto: <strong>rot13()</strong> and <strong>xor_bytes()</strong>. Both real, both in production.
@@ -2866,7 +2421,6 @@
           <span class="fc-ref">Interpreter.cpp — rot13() line 768 · xor_bytes() line 740</span>
         </div>
         <div class="feat-card">
-          <span class="fc-badge fc-badge-lol">WHY THO</span>
           <span class="fc-icon">⚛️</span>
           <h3>Actual Pointer System</h3>
           <p>Genuinely has <code>&amp;var</code> address-of, <code>*ptr</code> dereference, <code>ptr-&gt;member</code>
@@ -3550,14 +3104,6 @@
       requestAnimationFrame(animCursor);
     })();
 
-    // ─── SCROLL PROGRESS BAR ─────────────────────────────────
-    const scrollBar = document.getElementById('scroll-progress');
-    window.addEventListener('scroll', () => {
-      const h = document.documentElement;
-      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      scrollBar.style.width = pct + '%';
-    }, { passive: true });
-
     // ─── MATRIX RAIN ─────────────────────────────────────────
     (function () {
       const c = document.getElementById('matrix');
@@ -3732,83 +3278,6 @@
         });
       });
     })();
-
-    // ─── LIVE UPTIME COUNTER ─────────────────────────────────
-    (function() {
-      const start = Date.now();
-      const el = document.getElementById('uptime-val');
-      function update() {
-        const s = Math.floor((Date.now() - start) / 1000);
-        const h = String(Math.floor(s/3600)).padStart(2,'0');
-        const m = String(Math.floor((s%3600)/60)).padStart(2,'0');
-        const sc = String(s%60).padStart(2,'0');
-        el.textContent = h+':'+m+':'+sc;
-      }
-      setInterval(update, 1000);
-    })();
-
-    // ─── ANIMATED STAT COUNTERS ──────────────────────────────
-    function animateCounter(el, target, duration) {
-      const isStr = isNaN(parseInt(target));
-      if (isStr) return;
-      const num = parseInt(target);
-      const suffix = target.toString().replace(/[0-9]/g,'');
-      const start = performance.now();
-      el.classList.add('counting');
-      (function step(now) {
-        const p = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(num * ease) + suffix;
-        if (p < 1) requestAnimationFrame(step);
-        else { el.textContent = target; el.classList.remove('counting'); }
-      })(start);
-    }
-
-    // Observe stats bar
-    const statsIO = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.stat-n').forEach(el => {
-            const raw = el.textContent;
-            animateCounter(el, raw, 1500);
-          });
-          statsIO.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.stats-bar').forEach(el => statsIO.observe(el));
-
-    // ─── ANIMATE PROGRESS BARS ON SCROLL ─────────────────────
-    const progIO = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.prog-fill').forEach(bar => {
-            const w = bar.style.width;
-            bar.style.width = '0';
-            bar.style.setProperty('--target-width', w);
-            setTimeout(() => { bar.style.width = w; }, 100);
-          });
-          progIO.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.prog-list').forEach(el => progIO.observe(el));
-
-    // ─── 3D CARD TILT ────────────────────────────────────────
-    document.querySelectorAll('.feat-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const cx = (e.clientX - r.left) / r.width - 0.5;
-        const cy = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(800px) rotateX(${-cy*6}deg) rotateY(${cx*6}deg) translateZ(4px)`;
-        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-
   </script>
 </body>
 

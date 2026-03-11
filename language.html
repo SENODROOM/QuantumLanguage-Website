@@ -23,7 +23,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
 
 /* NAV */
 nav{position:sticky;top:0;z-index:300;background:rgba(4,7,11,0.92);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid rgba(0,229,255,.08);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:54px;flex-shrink:0;box-shadow:0 1px 0 rgba(0,229,255,.04),0 4px 30px rgba(0,0,0,.5)}
-.nav-logo{font-family:var(--display);font-size:1.55rem;letter-spacing:4px;color:var(--accent);text-decoration:none;text-shadow:0 0 25px rgba(0,229,255,.5),0 0 50px rgba(0,229,255,.2)}
+.nav-logo{font-family:var(--display);font-size:1.55rem;letter-spacing:4px;color:var(--accent);text-decoration:none;text-shadow:0 0 25px rgba(0,229,255,.5),0 0 50px rgba(0,229,255,.2);display:flex;align-items:center;gap:0.5rem}
+.nav-logo img{height:32px;width:auto;transition:transform .3s}
+.nav-logo:hover img{transform:scale(1.05)}
 .nav-links{display:flex;align-items:center;gap:0}
 .nav-link{font-family:var(--mono);font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);text-decoration:none;padding:0 1rem;height:54px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .nav-link:hover{color:var(--text)}
@@ -44,24 +46,18 @@ nav{position:sticky;top:0;z-index:300;background:rgba(4,7,11,0.92);backdrop-filt
 
 /* LAYOUT */
 .layout{display:flex;flex:1;max-width:1300px;margin:0 auto;width:100%;padding:0}
-.sidebar{width:240px;flex-shrink:0;position:sticky;top:54px;height:calc(100vh - 54px);overflow-y:auto;border-right:1px solid rgba(0,229,255,.07);padding:2rem 0;background:rgba(4,7,11,.6);backdrop-filter:blur(10px)}
-.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-track{background:transparent}.sidebar::-webkit-scrollbar-thumb{background:rgba(0,229,255,.15);border-radius:2px}
+.sidebar{width:240px;flex-shrink:0;position:sticky;top:54px;height:calc(100vh - 54px);overflow-y:auto;border-right:1px solid var(--border);padding:2rem 0}
+.sidebar::-webkit-scrollbar{width:4px}.sidebar::-webkit-scrollbar-track{background:transparent}.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .sb-section{margin-bottom:1.5rem}
-.sb-title{font-size:.55rem;letter-spacing:4px;text-transform:uppercase;color:rgba(0,229,255,.4);padding:.3rem 1.5rem;display:block}
-.sb-link{display:block;font-size:.68rem;letter-spacing:1px;color:var(--dim);text-decoration:none;padding:.45rem 1.5rem;border-left:2px solid transparent;transition:all .2s;position:relative;overflow:hidden}
-.sb-link::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(0,229,255,.08),transparent);transition:width .2s}
-.sb-link:hover::before{width:100%}
-.sb-link:hover{color:var(--text);border-left-color:rgba(0,229,255,.3)}
-.sb-link.active{color:var(--accent);border-left-color:var(--accent);background:rgba(0,229,255,.04);text-shadow:0 0 15px rgba(0,229,255,.3)}
+.sb-title{font-size:.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--dim);padding:.3rem 1.5rem;display:block}
+.sb-link{display:block;font-size:.68rem;letter-spacing:1px;color:var(--dim);text-decoration:none;padding:.45rem 1.5rem;border-left:2px solid transparent;transition:all .15s}
+.sb-link:hover{color:var(--text);border-left-color:var(--border)}
+.sb-link.active{color:var(--accent);border-left-color:var(--accent);background:rgba(0,229,255,.04)}
 .content{flex:1;padding:3rem 3rem 6rem;max-width:860px;overflow:hidden}
 @media(max-width:900px){.sidebar{display:none}.content{padding:2rem 1.5rem}}
 
-/* SCROLL PROGRESS */
-#scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--green),var(--accent));box-shadow:0 0 10px var(--accent);z-index:99999;pointer-events:none;width:0%;transition:width .1s linear}
-
 /* CONTENT STYLES */
-.doc-section{margin-bottom:5rem;scroll-margin-top:70px;opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
-.doc-section.visible{opacity:1;transform:none}
+.doc-section{margin-bottom:5rem;scroll-margin-top:70px}
 .doc-tag{font-size:.55rem;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
 .doc-section h2{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);line-height:1;letter-spacing:1px;margin-bottom:1rem}
 .doc-section h3{font-family:var(--display);font-size:1.4rem;letter-spacing:1px;color:var(--accent);margin:2rem 0 .8rem}
@@ -128,10 +124,12 @@ hr.doc-divider{border:none;height:1px;background:linear-gradient(90deg,rgba(0,22
 <!-- CURSOR -->
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
-<div id="scroll-progress"></div>
 
 <nav>
-  <a href="index.html" class="nav-logo">QUANTUM</a>
+  <a href="index.html" class="nav-logo">
+    <img src="logo/logo.png" alt="Quantum Language">
+    <span>QUANTUM</span>
+  </a>
   <div class="nav-links">
     <a href="index.html" class="nav-link">← Home</a>
     <a href="#syntax" class="nav-link">Syntax</a>
@@ -862,33 +860,6 @@ document.addEventListener('mousemove', e => { cmx = e.clientX; cmy = e.clientY; 
   cursorRing.style.left = crx + 'px'; cursorRing.style.top = cry + 'px';
   requestAnimationFrame(animCursor);
 })();
-
-// SCROLL PROGRESS
-const scrollBar = document.getElementById('scroll-progress');
-window.addEventListener('scroll', () => {
-  const h = document.documentElement;
-  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-  scrollBar.style.width = pct + '%';
-}, { passive: true });
-
-// SECTION REVEAL
-const revealIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.doc-section').forEach(el => revealIO.observe(el));
-
-// SIDEBAR ACTIVE
-const sbLinks = document.querySelectorAll('.sb-link');
-const sbIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      sbLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
-    }
-  });
-}, { rootMargin: '-30% 0px -60% 0px' });
-document.querySelectorAll('.doc-section[id]').forEach(el => sbIO.observe(el));
 </script>
 </body>
 </html>

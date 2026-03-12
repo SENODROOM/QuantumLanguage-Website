@@ -40,8 +40,8 @@ Quantum supports **Python syntax, JavaScript syntax, AND C++ syntax simultaneous
 - ✅ **C-style Pointers** — `&var`, `*ptr`, `ptr->member` in a scripting language
 - ✅ **Python Slicing** — `list[1:4:2]`
 - ✅ **REPL** — Interactive interpreter
-- ✅ **Online IDE** — [Try it here](https://senodroom.github.io/Quantum-Language/ide.html)
-- ✅ **Documentation** — [Language Reference](https://senodroom.github.io/Quantum-Language/language.html)
+- ✅ **Online IDE** — [Try it here](https://quantum.quantumlogicslimited.com/ide.html)
+- ✅ **Documentation** — [Language Reference](https://quantum.quantumlogicslimited.com/language.html)
 
 ---
 

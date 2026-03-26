@@ -21,7 +21,7 @@ import { LanguageComparison } from './components/LanguageComparison';
 import { SyntaxVersatility } from './components/SyntaxVersatility';
 import { StandardLibrary } from './components/StandardLibrary';
 import { Vision } from './components/Vision';
-import { Blog } from './components/Blog';
+// import { Blog } from './components/Blog';
 import { Ecosystem } from './components/Ecosystem';
 import { Installation } from './components/Installation';
 import { Newsletter } from './components/Newsletter';
@@ -60,7 +60,7 @@ export default function App() {
                   <QuantumIDE />
                   <StandardLibrary />
                   <Vision />
-                  <Blog />
+                  {/* <Blog /> */}
                   <Roadmap />
                   <Ecosystem />
                   <FAQ />

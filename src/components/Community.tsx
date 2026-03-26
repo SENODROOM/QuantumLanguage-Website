@@ -7,7 +7,7 @@ export const Community = () => (
       <h2 className="text-3xl font-bold text-black dark:text-white mb-12 uppercase tracking-tight">Join the Revolution</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
         {[
-          { label: "GitHub Stars", value: "150+" },
+          { label: "GitHub Stars", value: "[403 Forbidden]" },
           { label: "Contributors", value: "1" },
           { label: "Standard Libs", value: "12+" },
           { label: "Commits", value: "800+" }

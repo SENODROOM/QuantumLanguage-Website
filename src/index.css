@@ -10,6 +10,43 @@
   --color-quantum-light: #f8fafc;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  * {
+    @apply border-black/10 dark:border-white/10;
+  }
+  
+  body {
+    @apply bg-white text-black dark:bg-black dark:text-white transition-colors duration-300;
+    cursor: none; /* Hide default cursor for custom cursor */
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-black/10 dark:bg-white/10 rounded-full border-2 border-transparent bg-clip-padding hover:bg-cyan-500/40 dark:hover:bg-cyan-500/40 transition-colors;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-cyan-500/30 text-cyan-900 dark:text-cyan-100;
+  }
+}
+
 @layer utilities {
   .glass {
     @apply bg-white/10 dark:bg-black/10 backdrop-blur-md border border-white/20 dark:border-white/5;
@@ -36,10 +73,6 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  @apply bg-white text-black dark:bg-black dark:text-white transition-colors duration-300;
 }
 
 .noise {

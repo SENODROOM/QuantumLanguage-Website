@@ -1,0 +1,5 @@
+{
+  "name": "Quantum Language",
+  "description": "A dynamically-typed, cybersecurity-ready scripting language written in C++17. High performance, multi-syntax, and built for the modern web and security.",
+  "requestFramePermissions": []
+}
